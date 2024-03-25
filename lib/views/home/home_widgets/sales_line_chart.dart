@@ -1,4 +1,5 @@
 import 'package:dashboard_app/constants.dart';
+import 'package:dashboard_app/views/home/home_widgets/sales_chart_header.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
@@ -18,39 +19,35 @@ class _SalesLineChartState extends State<SalesLineChart> {
   bool showAvg = false;
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: <Widget>[
-        AspectRatio(
-          aspectRatio: 1.70,
-          child: Padding(
-            padding: const EdgeInsets.only(
-              right: 18,
-              left: 12,
-              top: 24,
-              bottom: 12,
-            ),
-            child: LineChart(
-              showAvg ? avgData() : mainData(),
-            ),
-          ),
-        ),
-        SizedBox(
-          width: 60,
-          height: 34,
-          child: TextButton(
-            onPressed: () {
-              setState(() {
-                showAvg = !showAvg;
-              });
-            },
-            child: Text(
-              'avg',
-              style: TextStyle(
-                fontSize: 12,
-                color: showAvg ? Colors.white.withOpacity(0.5) : Colors.white,
+    return Column(
+      children: [
+        const SalesChartHeader(),
+        Stack(
+          children: <Widget>[
+            AspectRatio(
+              aspectRatio: 2,
+              child: LineChart(
+                showAvg ? avgData() : mainData(),
               ),
             ),
-          ),
+            SizedBox(
+              child: TextButton(
+                onPressed: () {
+                  setState(() {
+                    showAvg = !showAvg;
+                  });
+                },
+                child: Text(
+                  'avg',
+                  style: TextStyle(
+                    fontSize: 12,
+                    color:
+                        showAvg ? Colors.white.withOpacity(0.5) : Colors.white,
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
       ],
     );

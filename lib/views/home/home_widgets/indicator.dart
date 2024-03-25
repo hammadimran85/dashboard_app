@@ -1,4 +1,5 @@
 import 'package:dashboard_app/constants.dart';
+import 'package:dashboard_app/responsive.dart';
 import 'package:flutter/material.dart';
 
 class Indicator extends StatelessWidget {
@@ -8,7 +9,7 @@ class Indicator extends StatelessWidget {
     required this.text,
     required this.isSquare,
     required this.percentage,
-    this.size = 16,
+    this.size = 10,
     this.textColor,
   });
   final Color color;
@@ -25,8 +26,8 @@ class Indicator extends StatelessWidget {
         Row(
           children: <Widget>[
             Container(
-              width: size,
-              height: size,
+              width: !Responsive.isDesktop(context) ? 8 : size,
+              height: !Responsive.isDesktop(context) ? 8 : size,
               decoration: BoxDecoration(
                 shape: isSquare ? BoxShape.rectangle : BoxShape.circle,
                 color: color,
@@ -38,7 +39,8 @@ class Indicator extends StatelessWidget {
             Text(
               text,
               style: TextStyle(
-                fontSize: 16,
+                overflow: TextOverflow.ellipsis,
+                fontSize: !Responsive.isDesktop(context) ? 8 : 12,
                 fontWeight: FontWeight.bold,
                 color: textColor,
               ),
@@ -47,10 +49,11 @@ class Indicator extends StatelessWidget {
         ),
         Text(
           percentage,
-          style: const TextStyle(
+          style: TextStyle(
+            overflow: TextOverflow.ellipsis,
             color: primaryColor,
             fontWeight: FontWeight.bold,
-            fontSize: 28,
+            fontSize: !Responsive.isDesktop(context) ? 8 : 16,
           ),
         )
       ],

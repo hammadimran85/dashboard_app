@@ -1,5 +1,9 @@
+import 'package:dashboard_app/constants.dart';
+import 'package:dashboard_app/controllers/side_bar_controller.dart';
+import 'package:dashboard_app/responsive.dart';
 import 'package:dashboard_app/views/home/home_widgets/userMenuCard.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class Header extends StatelessWidget {
   const Header({super.key});
@@ -8,11 +12,24 @@ class Header extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Text(
-          'Dashboard',
-          style: Theme.of(context).textTheme.titleLarge,
+        if (!Responsive.isMobile(context) && !Responsive.isTablet(context))
+          Text(
+            'Dashboard',
+            style: Theme.of(context).textTheme.titleLarge,
+          ),
+        if (!Responsive.isDesktop(context))
+          IconButton(
+            icon: const Icon(
+              Icons.menu,
+              color: primaryColor,
+            ),
+            onPressed: context.read<SideBarController>().controlMenu,
+          ),
+        if (!Responsive.isMobile(context))
+          Spacer(flex: Responsive.isDesktop(context) ? 2 : 1),
+        const SizedBox(
+          width: 30,
         ),
-        const Spacer(flex: 3),
         Expanded(
           flex: 3,
           child: Container(

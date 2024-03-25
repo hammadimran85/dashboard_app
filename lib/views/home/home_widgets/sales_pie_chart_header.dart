@@ -1,4 +1,5 @@
 import 'package:dashboard_app/constants.dart';
+import 'package:dashboard_app/responsive.dart';
 import 'package:flutter/material.dart';
 
 class SalesPieChartHeader extends StatelessWidget {
@@ -6,36 +7,38 @@ class SalesPieChartHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 15, right: 15, top: 45),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          const Text(
-            'Most Sold Items',
-            style: TextStyle(
-                fontSize: 22, fontWeight: FontWeight.bold, color: primaryColor),
+    final size = MediaQuery.of(context).size;
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          'Most Sold Items',
+          style: TextStyle(
+              fontSize: !Responsive.isDesktop(context) ? 12 : 18,
+              fontWeight: FontWeight.bold,
+              color: primaryColor),
+        ),
+        Container(
+          width: !Responsive.isDesktop(context)
+              ? size.width * 0.15
+              : size.width * 0.1,
+          height: 40,
+          padding: const EdgeInsets.all(5),
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              color: Colors.grey.shade100),
+          child: const Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Text(
+                'Weekly',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              Icon(Icons.expand_more)
+            ],
           ),
-          Container(
-            width: 150,
-            height: 40,
-            padding: const EdgeInsets.all(5),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: Colors.grey.shade100),
-            child: const Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Text(
-                  'Weekly',
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-                Icon(Icons.expand_more)
-              ],
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

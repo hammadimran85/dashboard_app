@@ -1,5 +1,7 @@
 import 'package:dashboard_app/constants.dart';
+import 'package:dashboard_app/responsive.dart';
 import 'package:dashboard_app/views/home/home_widgets/indicator.dart';
+import 'package:dashboard_app/views/home/home_widgets/sales_pie_chart_header.dart';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 
@@ -14,106 +16,94 @@ class _SalesPieChartState extends State<SalesPieChart> {
   int touchedIndex = -1;
   @override
   Widget build(BuildContext context) {
-    return AspectRatio(
-      aspectRatio: 1.4,
-      child: Row(
-        children: <Widget>[
-          const SizedBox(
-            height: 18,
-          ),
-          Expanded(
-            child: AspectRatio(
-              aspectRatio: 1,
-              child: PieChart(
-                PieChartData(
-                  pieTouchData: PieTouchData(
-                    touchCallback: (FlTouchEvent event, pieTouchResponse) {
-                      setState(() {
-                        if (!event.isInterestedForInteractions ||
-                            pieTouchResponse == null ||
-                            pieTouchResponse.touchedSection == null) {
-                          touchedIndex = -1;
-                          return;
-                        }
-                        touchedIndex = pieTouchResponse
-                            .touchedSection!.touchedSectionIndex;
-                      });
-                    },
+    return Column(
+      children: [
+        const SalesPieChartHeader(),
+        AspectRatio(
+          aspectRatio: 1.8,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              Expanded(
+                child: AspectRatio(
+                  aspectRatio: 1,
+                  child: PieChart(
+                    PieChartData(
+                      pieTouchData: PieTouchData(
+                        touchCallback: (FlTouchEvent event, pieTouchResponse) {
+                          setState(() {
+                            if (!event.isInterestedForInteractions ||
+                                pieTouchResponse == null ||
+                                pieTouchResponse.touchedSection == null) {
+                              touchedIndex = -1;
+                              return;
+                            }
+                            touchedIndex = pieTouchResponse
+                                .touchedSection!.touchedSectionIndex;
+                          });
+                        },
+                      ),
+                      borderData: FlBorderData(
+                        show: true,
+                      ),
+                      sectionsSpace: 0,
+                      centerSpaceRadius: 40,
+                      sections: showingSections(),
+                    ),
                   ),
-                  borderData: FlBorderData(
-                    show: true,
-                  ),
-                  sectionsSpace: 0,
-                  centerSpaceRadius: 60,
-                  sections: showingSections(),
                 ),
               ),
-            ),
+              Container(
+                width: !Responsive.isDesktop(context) ? 90 : 120,
+                margin: const EdgeInsets.only(top: 18),
+                padding: const EdgeInsets.all(15),
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                    color: bgColor,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.shade300,
+                        blurRadius: 10.0,
+                        spreadRadius: 2.0,
+                        offset: const Offset(0, 4.0),
+                      )
+                    ],
+                    borderRadius: BorderRadius.circular(20)),
+                child: const Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Indicator(
+                      color: Colors.blue,
+                      text: 'Pizza',
+                      isSquare: false,
+                      percentage: '40%',
+                    ),
+                    Indicator(
+                      color: Colors.yellow,
+                      text: 'Burgers',
+                      isSquare: false,
+                      percentage: '30%',
+                    ),
+                    Indicator(
+                      color: Colors.purple,
+                      text: 'Pasta',
+                      isSquare: false,
+                      percentage: '15%',
+                    ),
+                    Indicator(
+                      color: Colors.green,
+                      text: 'Beverages',
+                      isSquare: false,
+                      percentage: '15%',
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
-          Container(
-            width: 150,
-            margin: const EdgeInsets.only(top: 30),
-            padding: const EdgeInsets.all(20),
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-                color: bgColor,
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.shade300,
-                    blurRadius: 10.0,
-                    spreadRadius: 2.0,
-                    offset: const Offset(0, 4.0),
-                  )
-                ],
-                borderRadius: BorderRadius.circular(20)),
-            child: const Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Indicator(
-                  color: Colors.blue,
-                  text: 'Pizza',
-                  isSquare: false,
-                  percentage: '40%',
-                ),
-                SizedBox(
-                  height: 4,
-                ),
-                Indicator(
-                  color: Colors.yellow,
-                  text: 'Burgers',
-                  isSquare: false,
-                  percentage: '30%',
-                ),
-                SizedBox(
-                  height: 4,
-                ),
-                Indicator(
-                  color: Colors.purple,
-                  text: 'Pasta',
-                  isSquare: false,
-                  percentage: '15%',
-                ),
-                SizedBox(
-                  height: 4,
-                ),
-                Indicator(
-                  color: Colors.green,
-                  text: 'Beverages',
-                  isSquare: false,
-                  percentage: '15%',
-                ),
-                SizedBox(
-                  height: 18,
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(
-            width: 28,
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 

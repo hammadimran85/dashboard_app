@@ -23,73 +23,51 @@ class _ThickBarChartState extends State<ThickBarChart> {
 
   @override
   Widget build(BuildContext context) {
-    return AspectRatio(
-      aspectRatio: 1,
-      child: Stack(
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                const Text(
-                  'Weekly Sales',
-                  style: TextStyle(
-                    color: primaryColor,
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(
-                  height: 4,
-                ),
-                const Text(
-                  'Earning',
-                  style: TextStyle(
-                    color: primaryColor,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(
-                  height: 38,
-                ),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
-                    child: BarChart(
-                      isPlaying ? randomData() : mainBarData(),
-                      swapAnimationDuration: animDuration,
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 12,
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8),
-            child: Align(
-              alignment: Alignment.topRight,
-              child: IconButton(
-                icon: Icon(
-                  isPlaying ? Icons.pause : Icons.play_arrow,
+    return Padding(
+      padding: const EdgeInsets.all(12),
+      child: AspectRatio(
+        aspectRatio: 1.5,
+        child: Stack(children: <Widget>[
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              const Text(
+                'Weekly Sales',
+                style: TextStyle(
                   color: primaryColor,
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
                 ),
-                onPressed: () {
-                  setState(() {
-                    isPlaying = !isPlaying;
-                    if (isPlaying) {
-                      refreshState();
-                    }
-                  });
-                },
               ),
-            ),
-          )
-        ],
+              const SizedBox(
+                height: 4,
+              ),
+              const Text(
+                'Earning',
+                style: TextStyle(
+                  color: primaryColor,
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(
+                height: 38,
+              ),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: BarChart(
+                    isPlaying ? randomData() : mainBarData(),
+                    swapAnimationDuration: animDuration,
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 12,
+              ),
+            ],
+          ),
+        ]),
       ),
     );
   }
@@ -99,7 +77,7 @@ class _ThickBarChartState extends State<ThickBarChart> {
     double y, {
     bool isTouched = false,
     Color? barColor,
-    double width = 22,
+    double width = 40,
     List<int> showTooltips = const [],
   }) {
     barColor ??= widget.barColor;
@@ -149,7 +127,7 @@ class _ThickBarChartState extends State<ThickBarChart> {
     return BarChartData(
       barTouchData: BarTouchData(
         touchTooltipData: BarTouchTooltipData(
-          tooltipBgColor: Colors.blueGrey,
+          tooltipBgColor: primaryColor,
           tooltipHorizontalAlignment: FLHorizontalAlignment.right,
           tooltipMargin: -10,
           getTooltipItem: (group, groupIndex, rod, rodIndex) {
@@ -181,16 +159,16 @@ class _ThickBarChartState extends State<ThickBarChart> {
             }
             return BarTooltipItem(
               '$weekDay\n',
-              TextStyle(
-                color: primaryColor.withOpacity(0.5),
+              const TextStyle(
+                color: secondaryColor,
                 fontWeight: FontWeight.bold,
                 fontSize: 18,
               ),
               children: <TextSpan>[
                 TextSpan(
                   text: (rod.toY - 1).toString(),
-                  style: TextStyle(
-                    color: widget.touchedBarColor,
+                  style: const TextStyle(
+                    color: secondaryColor,
                     fontSize: 16,
                     fontWeight: FontWeight.w500,
                   ),
