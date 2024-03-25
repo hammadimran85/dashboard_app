@@ -10,7 +10,7 @@ class DashboardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final insightWidget = !Responsive.isDesktop(context)
+    final insightWidget = Responsive.isMobile(context)
         ? const ColumnInsights()
         : const RowInsights();
 
@@ -25,9 +25,18 @@ class DashboardScreen extends StatelessWidget {
               const Header(),
               insightWidget,
               const SizedBox(
-                height: 10,
+                height: 30,
               ),
-              const Charts(),
+              MediaQuery.of(context).size.width >= 350
+                  ? const Charts()
+                  : Center(
+                      child: Text(
+                        'Screen Size is too small.',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: Theme.of(context).colorScheme.error),
+                      ),
+                    )
             ],
           ),
         ),

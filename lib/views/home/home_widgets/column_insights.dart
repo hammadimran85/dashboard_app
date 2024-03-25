@@ -1,4 +1,5 @@
 import 'package:dashboard_app/constants.dart';
+import 'package:dashboard_app/responsive.dart';
 import 'package:dashboard_app/views/home/home_widgets/insights.dart';
 import 'package:flutter/material.dart';
 
@@ -7,6 +8,7 @@ class ColumnInsights extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final iconSize = Responsive.isMobile(context) ? 28.0 : 32.0;
     return Card(
       elevation: 20,
       surfaceTintColor: Theme.of(context).colorScheme.surface,
@@ -17,9 +19,9 @@ class ColumnInsights extends StatelessWidget {
         children: [
           Insights(
             percentageColor: Colors.green.shade400,
-            icon: const Icon(
+            icon: Icon(
               Icons.monetization_on_outlined,
-              size: 32,
+              size: iconSize,
             ),
             title: 'Earning',
             amount: '\$198K',
@@ -28,24 +30,24 @@ class ColumnInsights extends StatelessWidget {
           ),
           Insights(
               percentageColor: Colors.green.shade400,
-              icon: const Icon(
+              icon: Icon(
                 Icons.trending_up_rounded,
-                size: 32,
-                color: Color.fromARGB(255, 129, 10, 145),
+                size: iconSize,
+                color: const Color.fromARGB(255, 129, 10, 145),
               ),
               title: 'Profit',
               color: const Color.fromARGB(148, 211, 123, 223),
               amount: '\$2.4k',
               percentage: '2%'),
-          const Insights(
+          Insights(
               percentageColor: Colors.red,
               icon: Icon(
                 Icons.price_change_rounded,
-                size: 32,
-                color: Color.fromARGB(255, 199, 145, 8),
+                size: iconSize,
+                color: const Color.fromARGB(255, 199, 145, 8),
               ),
               title: 'Expenses',
-              color: Color.fromARGB(164, 249, 212, 100),
+              color: const Color.fromARGB(164, 249, 212, 100),
               amount: '\$89k',
               percentage: '11%'),
         ],

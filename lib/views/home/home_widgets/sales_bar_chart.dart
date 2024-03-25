@@ -1,4 +1,5 @@
 import 'package:dashboard_app/constants.dart';
+import 'package:dashboard_app/responsive.dart';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 
@@ -54,17 +55,17 @@ class _SalesBarChartState extends State<SalesBarChart> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            const Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
-                SizedBox(
+                const SizedBox(
                   width: 10,
                 ),
                 Text(
                   'Total Orders (monthly)',
                   style: TextStyle(
                       color: primaryColor,
-                      fontSize: 18,
+                      fontSize: !Responsive.isDesktop(context) ? 12 : 18,
                       fontWeight: FontWeight.bold),
                 ),
               ],

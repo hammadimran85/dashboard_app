@@ -1,4 +1,5 @@
 import 'package:dashboard_app/constants.dart';
+import 'package:dashboard_app/responsive.dart';
 import 'package:flutter/material.dart';
 
 class Insights extends StatelessWidget {
@@ -19,14 +20,17 @@ class Insights extends StatelessWidget {
   final Color percentageColor;
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
     return Container(
-      width: 320,
-      padding: const EdgeInsets.all(defaultPadding * 2),
+      width:
+          Responsive.isMobile(context) ? size.width * 0.7 : size.width * 0.27,
+      padding: const EdgeInsets.all(defaultPadding),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Container(
-              padding: const EdgeInsets.all(defaultPadding + 10),
+              padding: EdgeInsets.all(size.width * 0.01),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(50), color: color),
               child: icon),
@@ -41,7 +45,7 @@ class Insights extends StatelessWidget {
                   Text(
                     amount,
                     style: TextStyle(
-                        fontSize: 20,
+                        fontSize: Responsive.isMobile(context) ? 12 : 20,
                         color: Theme.of(context).colorScheme.onSurface,
                         fontWeight: FontWeight.bold),
                   )
@@ -61,7 +65,11 @@ class Insights extends StatelessWidget {
                     style: TextStyle(
                         color: percentageColor, fontWeight: FontWeight.bold),
                   ),
-                  const Text('this month'),
+                  if (size.width >= 300)
+                    const Text(
+                      'this month',
+                      overflow: TextOverflow.ellipsis,
+                    ),
                 ],
               ),
             ],

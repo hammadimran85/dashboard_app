@@ -16,6 +16,8 @@ class SideMenu extends StatelessWidget {
       surfaceTintColor: Theme.of(context).colorScheme.surface,
       elevation: 2,
       child: ListView(
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
         children: [
           const DrawerHeaderSiderBar(),
           DrawerListTile(
@@ -63,7 +65,6 @@ class SideMenu extends StatelessWidget {
 class DrawerListTile extends StatelessWidget {
   const DrawerListTile({
     Key? key,
-    // For selecting those three line once press "Command+D"
     required this.title,
     required this.svgSrc,
     required this.press,
