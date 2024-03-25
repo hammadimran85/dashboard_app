@@ -14,28 +14,24 @@ class DashboardScreen extends StatelessWidget {
         ? const ColumnInsights()
         : const RowInsights();
 
-    final buildContent = Padding(
-      padding: const EdgeInsets.only(left: 20),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Header(),
-          insightWidget,
-          const SizedBox(
-            height: 20,
-          ),
-          const Charts(),
-        ],
-      ),
-    );
-
     return SafeArea(
-      child: !Responsive.isDesktop(context)
-          ? SingleChildScrollView(
-              child: buildContent,
-            )
-          : buildContent,
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.only(left: 20),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Header(),
+              insightWidget,
+              const SizedBox(
+                height: 10,
+              ),
+              const Charts(),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

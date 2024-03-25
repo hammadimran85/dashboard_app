@@ -20,7 +20,7 @@ class _SalesPieChartState extends State<SalesPieChart> {
       children: [
         const SalesPieChartHeader(),
         AspectRatio(
-          aspectRatio: 1.8,
+          aspectRatio: 1.269,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[

@@ -20,7 +20,7 @@ class SalesChartHeader extends StatelessWidget {
         ),
         Container(
           width: !Responsive.isDesktop(context)
-              ? size.width * 0.3
+              ? size.width * 0.5
               : size.width * 0.17,
           height: 40,
           padding: const EdgeInsets.all(5),

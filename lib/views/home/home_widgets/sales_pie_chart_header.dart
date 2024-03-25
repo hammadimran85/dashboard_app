@@ -20,8 +20,8 @@ class SalesPieChartHeader extends StatelessWidget {
         ),
         Container(
           width: !Responsive.isDesktop(context)
-              ? size.width * 0.15
-              : size.width * 0.1,
+              ? size.width * 0.25
+              : size.width * 0.09,
           height: 40,
           padding: const EdgeInsets.all(5),
           decoration: BoxDecoration(

@@ -77,7 +77,7 @@ class _ThickBarChartState extends State<ThickBarChart> {
     double y, {
     bool isTouched = false,
     Color? barColor,
-    double width = 40,
+    double width = 25,
     List<int> showTooltips = const [],
   }) {
     barColor ??= widget.barColor;

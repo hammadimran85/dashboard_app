@@ -18,18 +18,16 @@ class DrawerHeaderSiderBar extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.all(15),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Icon(
                       Icons.dashboard,
                       color: secondaryColor,
                     ),
-                    SizedBox(
-                      width: 20,
-                    ),
                     Text(
                       'Dashboard',
                       style: TextStyle(
+                          overflow: TextOverflow.ellipsis,
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
                           color: secondaryColor),

@@ -15,7 +15,7 @@ class Charts extends StatelessWidget {
       children: [
         if (!Responsive.isDesktop(context))
           SizedBox(
-            width: size.width * 0.5,
+            width: size.width * 0.7,
             child: const Column(
               children: [
                 SalesLineChart(),
@@ -28,7 +28,7 @@ class Charts extends StatelessWidget {
           ),
         if (!Responsive.isDesktop(context))
           SizedBox(
-            width: size.width * 0.5,
+            width: size.width * 0.7,
             child: const Column(
               children: [
                 SalesPieChart(),
@@ -74,7 +74,8 @@ class Charts extends StatelessWidget {
             shadowColor: Colors.grey.shade50,
             surfaceTintColor: Theme.of(context).colorScheme.surface,
             child: SizedBox(
-              width: size.width * 0.5,
+              width: size.width * 0.7,
+              height: size.height * 0.4,
               child: const SalesBarChart(),
             ),
           ),
@@ -88,7 +89,8 @@ class Charts extends StatelessWidget {
             shadowColor: Colors.grey.shade50,
             surfaceTintColor: Theme.of(context).colorScheme.surface,
             child: SizedBox(
-              width: size.width * 0.5,
+              width: size.width * 0.8,
+              height: size.height * 0.5,
               child: ThickBarChart(),
             ),
           ),

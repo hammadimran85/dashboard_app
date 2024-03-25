@@ -50,7 +50,7 @@ class _SalesBarChartState extends State<SalesBarChart> {
     return AspectRatio(
       aspectRatio: 1.8,
       child: Padding(
-        padding: const EdgeInsets.all(12),
+        padding: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
