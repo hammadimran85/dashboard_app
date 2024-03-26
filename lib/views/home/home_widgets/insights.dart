@@ -67,7 +67,7 @@ class Insights extends StatelessWidget {
                   ),
                   if (size.width >= 300)
                     const Text(
-                      'this month',
+                      ' this month',
                       overflow: TextOverflow.ellipsis,
                     ),
                 ],

@@ -17,7 +17,7 @@ class SideMenu extends StatelessWidget {
       elevation: 2,
       child: ListView(
         shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
+        // physics: const NeverScrollableScrollPhysics(),
         children: [
           const DrawerHeaderSiderBar(),
           DrawerListTile(
