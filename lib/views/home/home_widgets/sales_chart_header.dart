@@ -62,14 +62,7 @@ class SalesChartHeader extends StatelessWidget {
               ],
             ),
           ),
-        if (!Responsive.isDesktop(context))
-          const DropDownMenu(
-            dropdownItems: [
-              'Quater',
-              'Semester',
-              'Annual',
-            ],
-          ),
+        if (!Responsive.isDesktop(context)) const DropDownMenu(),
       ],
     );
   }
